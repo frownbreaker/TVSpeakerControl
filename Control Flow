@@ -1,0 +1,840 @@
+[
+    {
+        "id": "9e2094a2.74a5e8",
+        "type": "http in",
+        "z": "6b951183.f35fb",
+        "name": "TV Start",
+        "url": "/SHARPTVOPERATING",
+        "method": "get",
+        "upload": false,
+        "swaggerDoc": "",
+        "x": 80,
+        "y": 80,
+        "wires": [
+            [
+                "828c4ea7.aff3b",
+                "44adcf4d.439c5"
+            ]
+        ]
+    },
+    {
+        "id": "828c4ea7.aff3b",
+        "type": "http response",
+        "z": "6b951183.f35fb",
+        "name": "Reply",
+        "statusCode": "",
+        "headers": {},
+        "x": 270,
+        "y": 40,
+        "wires": []
+    },
+    {
+        "id": "ada28476.98ef68",
+        "type": "trigger",
+        "z": "6b951183.f35fb",
+        "op1": "",
+        "op2": "0",
+        "op1type": "nul",
+        "op2type": "str",
+        "duration": "1",
+        "extend": true,
+        "units": "min",
+        "reset": "",
+        "name": "Off?",
+        "x": 410,
+        "y": 280,
+        "wires": [
+            [
+                "e296eca0.6e9ea"
+            ]
+        ]
+    },
+    {
+        "id": "e296eca0.6e9ea",
+        "type": "http request",
+        "z": "6b951183.f35fb",
+        "name": "SPK Off",
+        "method": "GET",
+        "ret": "txt",
+        "url": "http://192.168.0.237/CONSPEAKERSOFF",
+        "tls": "",
+        "x": 560,
+        "y": 280,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "44adcf4d.439c5",
+        "type": "http request",
+        "z": "6b951183.f35fb",
+        "name": "SPK On",
+        "method": "GET",
+        "ret": "txt",
+        "url": "http://192.168.0.237/CONSPEAKERSON",
+        "tls": "",
+        "x": 280,
+        "y": 80,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "c8106c46.b508c",
+        "type": "trigger",
+        "z": "6b951183.f35fb",
+        "op1": "1",
+        "op2": "0",
+        "op1type": "str",
+        "op2type": "str",
+        "duration": "5",
+        "extend": true,
+        "units": "s",
+        "reset": "",
+        "name": "Heartbeat",
+        "x": 280,
+        "y": 320,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "18372e4f.d3fef2",
+        "type": "ping",
+        "z": "6b951183.f35fb",
+        "name": "Transponder",
+        "host": "192.168.0.182",
+        "timer": "20",
+        "x": 90,
+        "y": 440,
+        "wires": [
+            [
+                "63925570.5c04cc"
+            ]
+        ]
+    },
+    {
+        "id": "8a061875.dff888",
+        "type": "trigger",
+        "z": "6b951183.f35fb",
+        "op1": "1",
+        "op2": "0",
+        "op1type": "str",
+        "op2type": "str",
+        "duration": "20",
+        "extend": true,
+        "units": "s",
+        "reset": "",
+        "name": "On",
+        "x": 426,
+        "y": 414,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "73f329a1.b83e38",
+        "type": "trigger",
+        "z": "6b951183.f35fb",
+        "op1": "1",
+        "op2": "0",
+        "op1type": "str",
+        "op2type": "str",
+        "duration": "20",
+        "extend": true,
+        "units": "s",
+        "reset": "",
+        "name": "Off",
+        "x": 425,
+        "y": 459,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "63925570.5c04cc",
+        "type": "switch",
+        "z": "6b951183.f35fb",
+        "name": "",
+        "property": "payload",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "gt",
+                "v": "0",
+                "vt": "num"
+            },
+            {
+                "t": "false"
+            }
+        ],
+        "checkall": "true",
+        "outputs": 2,
+        "x": 250,
+        "y": 440,
+        "wires": [
+            [
+                "8a061875.dff888"
+            ],
+            [
+                "73f329a1.b83e38"
+            ]
+        ]
+    },
+    {
+        "id": "20907ce2.062004",
+        "type": "ping",
+        "z": "6b951183.f35fb",
+        "name": "AV RF Gateway",
+        "host": "192.168.0.237",
+        "timer": "20",
+        "x": 100,
+        "y": 640,
+        "wires": [
+            [
+                "c70220cf.4ca79"
+            ]
+        ]
+    },
+    {
+        "id": "3ce2af4f.cf274",
+        "type": "trigger",
+        "z": "6b951183.f35fb",
+        "op1": "1",
+        "op2": "0",
+        "op1type": "str",
+        "op2type": "str",
+        "duration": "20",
+        "extend": true,
+        "units": "s",
+        "reset": "",
+        "name": "On",
+        "x": 435,
+        "y": 616,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "7cc0f940.3db928",
+        "type": "trigger",
+        "z": "6b951183.f35fb",
+        "op1": "1",
+        "op2": "0",
+        "op1type": "str",
+        "op2type": "str",
+        "duration": "20",
+        "extend": true,
+        "units": "s",
+        "reset": "",
+        "name": "Off",
+        "x": 435,
+        "y": 665,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "c70220cf.4ca79",
+        "type": "switch",
+        "z": "6b951183.f35fb",
+        "name": "",
+        "property": "payload",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "gt",
+                "v": "0",
+                "vt": "num"
+            },
+            {
+                "t": "false"
+            }
+        ],
+        "checkall": "true",
+        "outputs": 2,
+        "x": 250,
+        "y": 640,
+        "wires": [
+            [
+                "3ce2af4f.cf274"
+            ],
+            [
+                "7cc0f940.3db928"
+            ]
+        ]
+    },
+    {
+        "id": "a2290418.b425f8",
+        "type": "ping",
+        "z": "6b951183.f35fb",
+        "name": "TV",
+        "host": "192.168.0.219",
+        "timer": "20",
+        "x": 68,
+        "y": 539,
+        "wires": [
+            [
+                "5bae7e44.21ac9"
+            ]
+        ]
+    },
+    {
+        "id": "f92874d1.230e78",
+        "type": "trigger",
+        "z": "6b951183.f35fb",
+        "op1": "1",
+        "op2": "0",
+        "op1type": "str",
+        "op2type": "str",
+        "duration": "20",
+        "extend": true,
+        "units": "s",
+        "reset": "",
+        "name": "On",
+        "x": 429,
+        "y": 509,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "38c3e9c4.c5e1e6",
+        "type": "trigger",
+        "z": "6b951183.f35fb",
+        "op1": "1",
+        "op2": "0",
+        "op1type": "str",
+        "op2type": "str",
+        "duration": "20",
+        "extend": true,
+        "units": "s",
+        "reset": "",
+        "name": "Off",
+        "x": 429,
+        "y": 558,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "5bae7e44.21ac9",
+        "type": "switch",
+        "z": "6b951183.f35fb",
+        "name": "",
+        "property": "payload",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "gt",
+                "v": "0",
+                "vt": "str"
+            },
+            {
+                "t": "false"
+            }
+        ],
+        "checkall": "true",
+        "outputs": 2,
+        "x": 250,
+        "y": 540,
+        "wires": [
+            [
+                "f92874d1.230e78"
+            ],
+            [
+                "38c3e9c4.c5e1e6"
+            ]
+        ]
+    },
+    {
+        "id": "7791c3a3.cd8f3c",
+        "type": "http request",
+        "z": "6b951183.f35fb",
+        "name": "TV Off",
+        "method": "GET",
+        "ret": "txt",
+        "url": "http://192.168.0.237/SHARPTVOFF",
+        "tls": "",
+        "x": 710,
+        "y": 280,
+        "wires": [
+            [
+                "2e8634e3.b165cc"
+            ]
+        ]
+    },
+    {
+        "id": "2e8634e3.b165cc",
+        "type": "delay",
+        "z": "6b951183.f35fb",
+        "name": "",
+        "pauseType": "delay",
+        "timeout": "20",
+        "timeoutUnits": "seconds",
+        "rate": "1",
+        "nbRateUnits": "1",
+        "rateUnits": "second",
+        "randomFirst": "1",
+        "randomLast": "5",
+        "randomUnits": "seconds",
+        "drop": false,
+        "x": 860,
+        "y": 231,
+        "wires": [
+            [
+                "e641c306.8485c"
+            ]
+        ]
+    },
+    {
+        "id": "e641c306.8485c",
+        "type": "http request",
+        "z": "6b951183.f35fb",
+        "name": "TV On",
+        "method": "GET",
+        "ret": "txt",
+        "url": "http://192.168.0.237/SHARPTVON",
+        "tls": "",
+        "x": 1010,
+        "y": 231,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "a29ad6d7.32f468",
+        "type": "mqtt in",
+        "z": "6b951183.f35fb",
+        "name": "TVKeepAlive",
+        "topic": "TVKeepAlive",
+        "qos": "0",
+        "broker": "c78cc561.e16a48",
+        "x": 110,
+        "y": 280,
+        "wires": [
+            [
+                "ada28476.98ef68",
+                "c8106c46.b508c"
+            ]
+        ]
+    },
+    {
+        "id": "d5d6a3d0.a3438",
+        "type": "function",
+        "z": "6b951183.f35fb",
+        "name": "Timers Off",
+        "func": "msg.reset = \"whatever you need here\";\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 250,
+        "y": 240,
+        "wires": [
+            [
+                "ada28476.98ef68"
+            ]
+        ]
+    },
+    {
+        "id": "d39a26f5.bc4108",
+        "type": "http in",
+        "z": "6b951183.f35fb",
+        "name": "TV Off",
+        "url": "/SHARPTVSHUTDOWN",
+        "method": "get",
+        "upload": false,
+        "swaggerDoc": "",
+        "x": 70,
+        "y": 180,
+        "wires": [
+            [
+                "d5d6a3d0.a3438",
+                "2edaf5fa.532dfa",
+                "e381cd6b.3d45e"
+            ]
+        ]
+    },
+    {
+        "id": "2edaf5fa.532dfa",
+        "type": "http response",
+        "z": "6b951183.f35fb",
+        "name": "Reply",
+        "statusCode": "",
+        "headers": {},
+        "x": 250,
+        "y": 140,
+        "wires": []
+    },
+    {
+        "id": "e381cd6b.3d45e",
+        "type": "http request",
+        "z": "6b951183.f35fb",
+        "name": "SPK Off",
+        "method": "GET",
+        "ret": "txt",
+        "url": "http://192.168.0.237/CONSPEAKERSOFF",
+        "tls": "",
+        "x": 400,
+        "y": 180,
+        "wires": [
+            [
+                "a69bf89.040fe08"
+            ]
+        ]
+    },
+    {
+        "id": "532fef9a.bbb48",
+        "type": "http request",
+        "z": "6b951183.f35fb",
+        "name": "TV Off",
+        "method": "GET",
+        "ret": "txt",
+        "url": "http://192.168.0.237/SHARPTVOFF",
+        "tls": "",
+        "x": 710,
+        "y": 180,
+        "wires": [
+            [
+                "4342fd29.43b544"
+            ]
+        ]
+    },
+    {
+        "id": "4342fd29.43b544",
+        "type": "delay",
+        "z": "6b951183.f35fb",
+        "name": "",
+        "pauseType": "delay",
+        "timeout": "20",
+        "timeoutUnits": "seconds",
+        "rate": "1",
+        "nbRateUnits": "1",
+        "rateUnits": "second",
+        "randomFirst": "1",
+        "randomLast": "5",
+        "randomUnits": "seconds",
+        "drop": false,
+        "x": 860,
+        "y": 180,
+        "wires": [
+            [
+                "36786a8b.281f86"
+            ]
+        ]
+    },
+    {
+        "id": "36786a8b.281f86",
+        "type": "http request",
+        "z": "6b951183.f35fb",
+        "name": "TV On",
+        "method": "GET",
+        "ret": "txt",
+        "url": "http://192.168.0.237/SHARPTVON",
+        "tls": "",
+        "x": 1010,
+        "y": 180,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "e18cd931.f77598",
+        "type": "comment",
+        "z": "6b951183.f35fb",
+        "name": "Timer Reset",
+        "info": "Timer Off sends a reset message. \nThis resets the timer that powers off the TV \nbut also the one that turns the TV back on!\nSo a parallel path isneeded as RESET message \nstops all timers not just power off but power on",
+        "x": 450,
+        "y": 220,
+        "wires": []
+    },
+    {
+        "id": "a69bf89.040fe08",
+        "type": "delay",
+        "z": "6b951183.f35fb",
+        "name": "",
+        "pauseType": "delay",
+        "timeout": "7",
+        "timeoutUnits": "seconds",
+        "rate": "1",
+        "nbRateUnits": "1",
+        "rateUnits": "second",
+        "randomFirst": "1",
+        "randomLast": "5",
+        "randomUnits": "seconds",
+        "drop": false,
+        "x": 560,
+        "y": 180,
+        "wires": [
+            [
+                "532fef9a.bbb48"
+            ]
+        ]
+    },
+    {
+        "id": "db9a2f94.93285",
+        "type": "ping",
+        "z": "6b951183.f35fb",
+        "name": "Office RF Gateway",
+        "host": "192.168.0.166",
+        "timer": "20",
+        "x": 110,
+        "y": 740,
+        "wires": [
+            [
+                "e728d63d.bd8b88"
+            ]
+        ]
+    },
+    {
+        "id": "f45f0cf9.f8b75",
+        "type": "trigger",
+        "z": "6b951183.f35fb",
+        "op1": "1",
+        "op2": "0",
+        "op1type": "str",
+        "op2type": "str",
+        "duration": "20",
+        "extend": true,
+        "units": "s",
+        "reset": "",
+        "name": "On",
+        "x": 435,
+        "y": 716,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "fc1ef444.52b3d8",
+        "type": "trigger",
+        "z": "6b951183.f35fb",
+        "op1": "1",
+        "op2": "0",
+        "op1type": "str",
+        "op2type": "str",
+        "duration": "20",
+        "extend": true,
+        "units": "s",
+        "reset": "",
+        "name": "Off",
+        "x": 435,
+        "y": 765,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "e728d63d.bd8b88",
+        "type": "switch",
+        "z": "6b951183.f35fb",
+        "name": "",
+        "property": "payload",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "gt",
+                "v": "0",
+                "vt": "num"
+            },
+            {
+                "t": "false"
+            }
+        ],
+        "checkall": "true",
+        "outputs": 2,
+        "x": 250,
+        "y": 740,
+        "wires": [
+            [
+                "f45f0cf9.f8b75"
+            ],
+            [
+                "fc1ef444.52b3d8"
+            ]
+        ]
+    },
+    {
+        "id": "8a0f1a30.bbef58",
+        "type": "ping",
+        "z": "6b951183.f35fb",
+        "name": "Loft RF Gateway",
+        "host": "192.168.0.218",
+        "timer": "20",
+        "x": 100,
+        "y": 840,
+        "wires": [
+            [
+                "b9b8430e.1ecc7"
+            ]
+        ]
+    },
+    {
+        "id": "8490cbdb.df95d8",
+        "type": "trigger",
+        "z": "6b951183.f35fb",
+        "op1": "1",
+        "op2": "0",
+        "op1type": "str",
+        "op2type": "str",
+        "duration": "20",
+        "extend": true,
+        "units": "s",
+        "reset": "",
+        "name": "On",
+        "x": 435,
+        "y": 816,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "b65ac478.dd54b8",
+        "type": "trigger",
+        "z": "6b951183.f35fb",
+        "op1": "1",
+        "op2": "0",
+        "op1type": "str",
+        "op2type": "str",
+        "duration": "20",
+        "extend": true,
+        "units": "s",
+        "reset": "",
+        "name": "Off",
+        "x": 435,
+        "y": 865,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "b9b8430e.1ecc7",
+        "type": "switch",
+        "z": "6b951183.f35fb",
+        "name": "",
+        "property": "payload",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "gt",
+                "v": "0",
+                "vt": "num"
+            },
+            {
+                "t": "false"
+            }
+        ],
+        "checkall": "true",
+        "outputs": 2,
+        "x": 250,
+        "y": 840,
+        "wires": [
+            [
+                "8490cbdb.df95d8"
+            ],
+            [
+                "b65ac478.dd54b8"
+            ]
+        ]
+    },
+    {
+        "id": "e2e7ae01.befd1",
+        "type": "ping",
+        "z": "6b951183.f35fb",
+        "name": "Office BT Scanner",
+        "host": "192.168.0.170",
+        "timer": "20",
+        "x": 110,
+        "y": 940,
+        "wires": [
+            [
+                "ebd0030c.34619"
+            ]
+        ]
+    },
+    {
+        "id": "943b8ce.e81907",
+        "type": "trigger",
+        "z": "6b951183.f35fb",
+        "op1": "1",
+        "op2": "0",
+        "op1type": "str",
+        "op2type": "str",
+        "duration": "20",
+        "extend": true,
+        "units": "s",
+        "reset": "",
+        "name": "On",
+        "x": 435,
+        "y": 916,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "6d49d77b.f98fe8",
+        "type": "trigger",
+        "z": "6b951183.f35fb",
+        "op1": "1",
+        "op2": "0",
+        "op1type": "str",
+        "op2type": "str",
+        "duration": "20",
+        "extend": true,
+        "units": "s",
+        "reset": "",
+        "name": "Off",
+        "x": 435,
+        "y": 965,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "ebd0030c.34619",
+        "type": "switch",
+        "z": "6b951183.f35fb",
+        "name": "",
+        "property": "payload",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "gt",
+                "v": "0",
+                "vt": "num"
+            },
+            {
+                "t": "false"
+            }
+        ],
+        "checkall": "true",
+        "outputs": 2,
+        "x": 250,
+        "y": 940,
+        "wires": [
+            [
+                "943b8ce.e81907"
+            ],
+            [
+                "6d49d77b.f98fe8"
+            ]
+        ]
+    },
+    {
+        "id": "c78cc561.e16a48",
+        "type": "mqtt-broker",
+        "z": "",
+        "broker": "192.168.0.251",
+        "port": "1883",
+        "clientid": "",
+        "usetls": false,
+        "compatmode": true,
+        "keepalive": "60",
+        "cleansession": true,
+        "willTopic": "",
+        "willQos": "0",
+        "willPayload": "",
+        "birthTopic": "",
+        "birthQos": "0",
+        "birthPayload": ""
+    }
+]
